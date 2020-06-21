@@ -10,4 +10,5 @@ class SpringbootClubbackApplication {
         SpringApplication.run(SpringbootClubbackApplication.class, args);
     }
 
+
 }
