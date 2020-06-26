@@ -1,7 +1,9 @@
 package com.lin.service.impl;
 
+import com.lin.dao.TagDao;
 import com.lin.pojo.Tag;
 import com.lin.service.TagService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -13,26 +15,36 @@ import java.util.List;
  * @Date 2020/6/24 16:01
  * @Version V1.0
  */
+/**
+ * @title TagServiceImpl
+ * @description
+ * @return 
+ * @author lizhuo
+ * @updateTime 2020/6/26 17:18
+ */
 @Service
 public class TagServiceImpl implements TagService {
+    @Autowired
+    private TagDao tagDao;
+
     @Override
-    public int saveTag(Tag tag) {
-        return 0;
+    public Tag saveTag(Tag tag) {
+        return tagDao.saveTag(tag);
     }
 
     @Override
     public Tag getTag(Long id) {
-        return null;
+        return tagDao.getTag(id);
     }
 
     @Override
     public Tag getTagByName(String name) {
-        return null;
+        return tagDao.getTagByName(name);
     }
 
     @Override
     public List<Tag> getAllTag() {
-        return null;
+        return tagDao.getAllTag();
     }
 
     @Override

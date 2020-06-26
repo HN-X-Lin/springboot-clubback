@@ -11,9 +11,17 @@ import java.util.List;
  * @Date 2020/6/23 0:03
  * @Version V1.0
  */
+
+/**
+ * @title TagService
+ * @description
+ * @return
+ * @author lizhuo
+ * @updateTime 2020/6/26 17:18
+ */
 public interface TagService {
 
-    int saveTag(Tag tag); //新增
+    Tag saveTag(Tag tag); //新增
 
     Tag getTag(Long id); //通过id获得
 
