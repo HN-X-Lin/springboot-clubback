@@ -4,7 +4,7 @@ import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 /**
- * @author lenovo
+ * @author xiaolin
  * @version 1.0
  * @ClassName Comment
  * @Description
@@ -12,5 +12,5 @@ import org.springframework.stereotype.Repository;
  */
 @Mapper
 @Repository
-public interface Comment {
+public interface CommentDao {
 }
