@@ -21,7 +21,7 @@ import java.util.List;
  */
 public interface TagService {
 
-    Tag saveTag(Tag tag); //新增
+    int saveTag(Tag tag); //新增
 
     Tag getTag(Long id); //通过id获得
 

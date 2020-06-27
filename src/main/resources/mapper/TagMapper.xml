@@ -7,4 +7,26 @@
         select  * from t_tag
     </select>
 
+    <delete id="deleteTag">
+        delete from t_tag where id=#{id}
+    </delete>
+
+    <insert id="saveTag" parameterType="Tag">
+        insert into t_tag values (#{id},#{name})
+    </insert>
+
+    <select id="getTag" resultType="Tag">
+        select * from t_tag where id = #{id}
+    </select>
+
+    <select id="getTagByName" resultType="Tag">
+        select * from t_tag where name = #{name}
+    </select>
+
+    <update id="updateTag" parameterType="Tag">
+        update t_tag
+        set name = #{name}
+        where id = #{id}
+    </update>
+
 </mapper>

@@ -28,7 +28,7 @@ public class TagServiceImpl implements TagService {
     private TagDao tagDao;
 
     @Override
-    public Tag saveTag(Tag tag) {
+    public int saveTag(Tag tag) {
         return tagDao.saveTag(tag);
     }
 
@@ -54,11 +54,11 @@ public class TagServiceImpl implements TagService {
 
     @Override
     public int updateTag(Tag tag) {
-        return 0;
+        return tagDao.updateTag(tag);
     }
 
     @Override
     public int deleteTag(Long id) {
-        return 0;
+        return tagDao.deleteTag(id);
     }
 }

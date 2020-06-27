@@ -24,7 +24,7 @@ import java.util.List;
 @Mapper
 @Repository
 public interface TagDao {
-    Tag saveTag(Tag tag); //新增
+    int saveTag(Tag tag); //新增
 
     Tag getTag(Long id);//通过id获得
 
