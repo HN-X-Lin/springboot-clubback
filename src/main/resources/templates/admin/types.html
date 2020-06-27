@@ -37,7 +37,7 @@
           </thead>
           <tbody>
           <tr th:each="type, iterStat : ${pageInfo.list}">
-            <td th:text="${iterStat.count}">1</td>
+            <td th:text="${iterStat.count}+( (${pageInfo.pageNum}-1) * 5)">1</td>
             <td th:text="${type.name}">摸鱼方法</td>
             <td>
               <a href="#" th:href="@{/admin/types/{id}/input(id=${type.id})}" class="ui mini teal basic button">编辑</a>

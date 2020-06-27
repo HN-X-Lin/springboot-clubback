@@ -3,9 +3,31 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.lin.dao.TypeDao">
-    <select id="getAllType" resultType="type">
-        select  * from t_type
+
+    <insert id="saveType" parameterType="Type">
+        insert into t_type values (#{id},#{name})
+    </insert>
+
+    <select id="getType" resultType="Type">
+        select * from t_type where id = #{id}
     </select>
 
+    <select id="getTypeByName" resultType="Type">
+        select * from t_type where name = #{name}
+    </select>
+
+    <select id="getAllType" resultType="Type">
+        select * from t_type
+    </select>
+
+    <update id="updateType" parameterType="Type">
+        update t_type
+        set name = #{name}
+        where id = #{id}
+    </update>
+
+    <delete id="deleteType">
+        delete from t_type where id = #{id}
+    </delete>
 
 </mapper>

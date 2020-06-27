@@ -8,16 +8,15 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**
- * @author lenovo
+ * @author xiaolin
  * @version 1.0
  * @ClassName TypeService
  * @Description
  * @date 2020/6/23 0:03
  */
-
 public interface TypeService {
 
-    Type saveType(Type type); //新增
+    int saveType(Type type); //新增
 
     Type getType(Long id);//通过id获得
 

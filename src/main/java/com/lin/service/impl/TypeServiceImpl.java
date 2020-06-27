@@ -22,7 +22,7 @@ public class TypeServiceImpl implements TypeService {
     private TypeDao typeDao;
 
     @Override
-    public Type saveType(Type type) {
+    public int saveType(Type type) {
         return typeDao.saveType(type);
     }
 
@@ -40,7 +40,6 @@ public class TypeServiceImpl implements TypeService {
     public List<Type> getAllType() {
         return typeDao.getAllType();
     }
-
 
     @Override
     public int updateType(Type type) {
