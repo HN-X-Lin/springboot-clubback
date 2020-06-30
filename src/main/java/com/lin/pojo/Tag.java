@@ -19,8 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Tag {
 
-    private Long id;
-    private String name;
+    private Long id;//标签id号
+    private String name;//标签名称
     private List<Blog> blogs = new ArrayList<>();
 
 }

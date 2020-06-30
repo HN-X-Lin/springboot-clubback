@@ -15,19 +15,19 @@ import java.util.List;
  */
 @Data
 public class Blog {
-    private Long id;
-    private String title;
-    private String content;
+    private Long id;//博客id号
+    private String title;//博客标题
+    private String content;//博客内容
     private String firstPicture;
-    private String flag;
-    private Integer views;
+    private String flag;//是否原创
+    private Integer views;//浏览阅读人数
     private boolean appreciation;
     private boolean shareStatement;
     private boolean commentabled;
     private boolean published;
     private boolean recommend;
-    private Date createTime;
-    private Date updateTime;
+    private Date createTime;//创作时间
+    private Date updateTime;//更新时间
 
     //这个属性用来在mybatis中进行连接查询的
     private Long typeId;
