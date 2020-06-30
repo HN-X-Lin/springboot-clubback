@@ -1,11 +1,11 @@
 package com.lin.service;
 
 /**
- * @author lenovo
- * @version 1.0
- * @ClassName CommentService
+ * @ClassName BlogService
  * @Description
- * @date 2020/6/24 16:05
+ * @Author xiaolin
+ * @Date 2020/6/24 12:45
+ * @Version V1.0
  */
 public interface CommentService {
 }

@@ -7,17 +7,9 @@ import java.util.List;
 /**
  * @ClassName TagService
  * @Description
- * @Author xiaolin
- * @Date 2020/6/23 0:03
- * @Version V1.0
- */
-
-/**
- * @title TagService
- * @description
- * @return
- * @author lizhuo
- * @updateTime 2020/6/26 17:18
+ * @Author xiaolin lizhuo
+ * @Date 2020/6/26 17:18
+ * @Version V2.0
  */
 public interface TagService {
 

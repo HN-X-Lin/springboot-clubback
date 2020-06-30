@@ -20,7 +20,7 @@ public class Blog {
     private String content;
     private String firstPicture;
     private String flag;
-    private Integer views;
+    private Integer views;//观看次数
     private boolean appreciation;
     private boolean shareStatement;
     private boolean commentabled;
@@ -38,7 +38,6 @@ public class Blog {
     private String description;
 
     private Type type;
-
     private User user;
 
     private List<Tag> tags = new ArrayList<>();
@@ -67,5 +66,4 @@ public class Blog {
             return tagIds;
         }
     }
-
 }

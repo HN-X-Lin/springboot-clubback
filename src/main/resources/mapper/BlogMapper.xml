@@ -4,5 +4,75 @@
 
 <mapper namespace="com.lin.dao.BlogDao">
 
+    <resultMap id="blog" type="Blog">
+        <id property="id" column="id"/>
+        <result property="title" column="title"/>
+        <result property="content" column="content"/>
+        <result property="flag" column="flag"/>
+        <result property="views" column="views"/>
+        <result property="updateTime" column="update_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="firstPicture" column="first_picture"/>
+        <result property="shareStatement" column="share_statement"/>
+        <result property="published" column="published"/>
+        <result property="appreciation" column="appreciation"/>
+        <result property="commentabled" column="commentabled"/>
+        <result property="description" column="description"/>
+        <result property="recommend" column="recommend"/>
+        <result property="createTime" column="create_time"/>
+        <result property="typeId" column="type_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="tagIds" column="tag_ids"/>
+        <association property="type" javaType="Type">
+            <id property="id" column="typeid"/>
+            <result property="name" column="typename"/>
+        </association>
+        <association property="user" javaType="User">
+            <id property="id" column="uid"/>
+            <result property="nickname" column="nickname"/>
+            <result property="username" column="username"/>
+            <result property="email" column="email"/>
+            <result property="avatar" column="avatar"/>
+        </association>
+        <collection property="tags" ofType="Tag">
+            <id property="id" column="tagid"/>
+            <result property="name" column="tagname"/>
+        </collection>
+    </resultMap>
+
+
+    <select id="getBlog" resultMap="blog"> /*blog 详细页*/
+        select * from t_blog b,t_type t where t.id = #{id}
+    </select>
+
+
+    <select id="getAllBlog" resultMap="blog">  /*后台博客展示*/
+        select b.id, b.title, b.update_time, b.recommend, b.type_id, b.published,
+               t.id typeid, t.name typename
+        from t_blog b, t_type t
+        where b.type_id = t.id    /*博客类型id=类型id*/
+    </select>
+
+
+
+    <select id="searchBlog" parameterType="Blog" resultMap="blog">
+        <bind name="pattern" value="'%' + title + '%'" />    /*模糊查询*/
+        select b.id, b.title, b.update_time, b.recommend, b.published, b.type_id, t.id typeid, t.name typename
+        from t_blog b ,t_type t
+        <where>
+            <if test="1 == 1">
+                b.type_id = t.id    /*博客类型id=类型id*/
+            </if>
+            <if test="typeId != null">
+                and b.type_id = #{typeId}       /*根据博客类型查询*/
+            </if>
+            <if test="recommend != null">
+                and b.recommend = #{recommend}   /*根据博客推荐查询*/
+            </if>
+            <if test="title != null">
+                and b.title like #{pattern}   /*根据博客title模糊查询*/
+            </if>
+        </where>
+    </select>
 
 </mapper>

@@ -11,16 +11,9 @@ import java.util.List;
 /**
  * @ClassName TagServiceImpl
  * @Description
- * @Author xiaolin
+ * @Author xiaolin,lizhuo
  * @Date 2020/6/24 16:01
- * @Version V1.0
- */
-/**
- * @title TagServiceImpl
- * @description
- * @return 
- * @author lizhuo
- * @updateTime 2020/6/26 17:18
+ * @Version V2.0
  */
 @Service
 public class TagServiceImpl implements TagService {
