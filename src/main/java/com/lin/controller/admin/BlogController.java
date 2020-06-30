@@ -3,6 +3,7 @@ package com.lin.controller.admin;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lin.pojo.Blog;
+import com.lin.pojo.User;
 import com.lin.service.BlogService;
 import com.lin.service.TagService;
 import com.lin.service.TypeService;
@@ -12,6 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -139,4 +141,22 @@ public class BlogController {
         setTypeAndTag(model);
         return "admin/blogs";
     }
+
+    @PostMapping("/blogs") //新增、编辑博客
+    public String addBlog(Blog blog, HttpSession session, RedirectAttributes attributes){
+        /**
+         * user信息 通过session 获得  session.getAttribute("user")
+         * 其他的 tag type user 都通过set方法传入blog  -----这个地方 主要是 一些blog数据库表里面没有的属性 但是我们的blog类有的属性 需要赋值
+         * 编辑和新增 一起 就只要判断 blog的id 是否为空
+         * 成功后 通过返回 相应的信息 这个下面我写了 给你自己写把 写完把这一段删了
+         * 最下面那个返回 是post 要用的 这样就不会有以一个奇怪的错  这个是重定向
+         */
+
+
+
+
+        attributes.addFlashAttribute("msg", "新增成功");
+        return "redirect:/admin/blogs";
+    }
+
 }

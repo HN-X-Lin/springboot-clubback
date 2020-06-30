@@ -4,7 +4,6 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
     password: 123456
-
 pagehelper:                #分页插件
   helper-dialect: mysql
   reasonable: true
@@ -22,3 +21,4 @@ logging:  #日志级别
   file: log/blog-dev.log
 
   #开发环境
+

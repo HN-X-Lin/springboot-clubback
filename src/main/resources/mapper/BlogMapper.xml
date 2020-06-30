@@ -42,7 +42,7 @@
 
 
     <select id="getBlog" resultMap="blog"> /*blog 详细页*/
-        select * from t_blog b,t_type t where t.id = #{id}
+        select * from t_blog  where id = #{id}
     </select>
 
 
@@ -52,8 +52,6 @@
         from t_blog b, t_type t
         where b.type_id = t.id    /*博客类型id=类型id*/
     </select>
-
-
 
     <select id="searchBlog" parameterType="Blog" resultMap="blog">
         <bind name="pattern" value="'%' + title + '%'" />    /*模糊查询*/
