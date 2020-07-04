@@ -8,4 +8,6 @@ package com.lin.service;
  * @Version V1.0
  */
 public interface CommentService {
+
+
 }

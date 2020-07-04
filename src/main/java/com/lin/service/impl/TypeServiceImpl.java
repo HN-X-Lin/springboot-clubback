@@ -18,8 +18,15 @@ import java.util.List;
 @Service
 public class TypeServiceImpl implements TypeService {
 
+
+
     @Autowired
     private TypeDao typeDao;
+
+    @Override
+    public List<Type> getBlogType() {
+        return typeDao.getBlogType();
+    }
 
     @Override
     public int saveType(Type type) {

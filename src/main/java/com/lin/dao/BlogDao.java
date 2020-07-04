@@ -3,6 +3,7 @@ package com.lin.dao;
 import com.lin.pojo.Blog;
 import com.lin.pojo.BlogAndTag;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

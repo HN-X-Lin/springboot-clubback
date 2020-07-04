@@ -76,5 +76,15 @@ public interface TypeDao {
      * @updateTime 2020/6/27 13:39
      */
     int deleteType(Long id); //删除
+
+    /**
+     * @title getBlogType
+     * @description 完成type类 主要用于显示相关blog的数量  
+     * @param 
+     * @return java.util.List<com.lin.pojo.Type>
+     * @author xiaolin
+     * @updateTime 2020/7/4 13:37
+     */
+    List<Type> getBlogType();
 }
 

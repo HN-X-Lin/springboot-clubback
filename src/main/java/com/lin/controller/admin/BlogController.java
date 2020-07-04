@@ -12,7 +12,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpSession;
 import java.util.List;
 
@@ -151,8 +150,6 @@ public class BlogController {
          * 成功后 通过返回 相应的信息 这个下面我写了 给你自己写把 写完把这一段删了
          * 最下面那个返回 是post 要用的 这样就不会有以一个奇怪的错  这个是重定向
          */
-
-
 
 
         attributes.addFlashAttribute("msg", "新增成功");

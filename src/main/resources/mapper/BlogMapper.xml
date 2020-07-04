@@ -40,7 +40,6 @@
         </collection>
     </resultMap>
 
-
     <select id="getBlog" resultMap="blog"> /*blog 详细页*/
         select * from t_blog  where id = #{id}
     </select>
@@ -71,6 +70,15 @@
                 and b.title like #{pattern}   /*根据博客title模糊查询*/
             </if>
         </where>
+    </select>
+
+    <select id="getByTypeId" resultMap="blog">
+        select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
+               t.name typename, t.id typeid,
+               u.nickname, u.avatar
+        from t_blog b, t_type t, t_user u
+        where b.type_id = t.id and u.id = b.user_id and b.type_id = #{typeId}
+        order by b.update_time desc
     </select>
 
 </mapper>

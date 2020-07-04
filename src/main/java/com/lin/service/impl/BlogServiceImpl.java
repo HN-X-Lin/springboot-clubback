@@ -24,6 +24,7 @@ public class BlogServiceImpl implements BlogService {
     @Autowired
     private BlogDao blogDao;
 
+
     @Override
     public Blog getBlog(Long id) {
         return blogDao.getBlog(id);

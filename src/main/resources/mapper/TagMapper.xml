@@ -3,6 +3,18 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
 <mapper namespace="com.lin.dao.TagDao">
+
+    <!--两个id可能会相冲，取别名即可-->
+    <resultMap id="tags" type="Tag">
+        <id property="id" column="tid"/>
+        <result property="name" column="name"/>
+        <collection property="blogs" ofType="Blog">
+            <id property="id" column="bid"/>
+            <result property="title" column="title"/>
+        </collection>
+    </resultMap>
+
+
     <select id="getAllTag" resultType="Tag">
         select  * from t_tag
     </select>

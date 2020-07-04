@@ -1,7 +1,14 @@
 package com.lin.controller;
 
+import com.lin.pojo.Type;
+import com.lin.service.TypeService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+
+import javax.jws.WebParam;
+import java.util.List;
 
 /**
  * @ClassName IndexContreller
@@ -13,8 +20,20 @@ import org.springframework.web.bind.annotation.GetMapping;
 @Controller
 public class IndexController {
 
-    @GetMapping("/index")
-    public String index(){
+    @Autowired
+    private TypeService typeService;
+
+
+
+    @GetMapping("/")
+    public String index(Model model){
+
+        List<Type> allType = typeService.getBlogType();
+        for(Type type : allType){
+            System.out.println("index " + type);
+        }
+        model.addAttribute("types", allType);
         return "index";
     }
+
 }
