@@ -71,6 +71,18 @@
             </if>
         </where>
     </select>
+    <insert id="saveBlog" parameterType="blog">
+        insert into t_blog values (#{id},#{title},#{content},#{firstPicture},#{flag},#{views},#{appreciation},
+        #{shareStatement},#{commentabled},#{published},#{recommend},#{createTime},#{updateTime},#{typeId},#{userId},#{description},#{tagIds})
+    </insert>
+    <update id="updateBlog" parameterType="blog">
+        update t_blog
+        set title=#{title},content=#{content},first_picture=#{firstPicture},flag=#{flag},appreciation=#{appreciation},
+        share_statement=#{shareStatement},commentabled=#{commentabled},published=#{published},
+        recommend=#{recommend},update_time=#{updateTime},type_id=#{typeId},
+        description=#{description},tag_ids=#{tagIds}
+        where id=#{id}
+    </update>
 
     <select id="getByTypeId" resultMap="blog">
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,

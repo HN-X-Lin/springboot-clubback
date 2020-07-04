@@ -3,6 +3,8 @@ package com.lin.controller.admin;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.lin.pojo.Blog;
+import com.lin.pojo.Tag;
+import com.lin.pojo.Type;
 import com.lin.pojo.User;
 import com.lin.service.BlogService;
 import com.lin.service.TagService;
@@ -13,6 +15,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import javax.servlet.http.HttpSession;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -61,7 +65,7 @@ public class BlogController {
     public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
         PageHelper.startPage(pagenum, 5);
         List<Blog> allBlog = blogService.getAllBlog();
-        System.out.println(allBlog.get(0));
+//        System.out.println(allBlog.get(0));
         //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
         model.addAttribute("pageInfo", pageInfo);
@@ -131,7 +135,7 @@ public class BlogController {
     @PostMapping("/blogs/search")  //按条件查询博客
     public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
         PageHelper.startPage(pagenum, 5);
-        System.out.println(blog);
+        //System.out.println(blog);
         List<Blog> allBlog = blogService.searchBlog(blog);
         //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
@@ -141,6 +145,16 @@ public class BlogController {
         return "admin/blogs";
     }
 
+    /**
+     * @title addblog
+     * @description  blog新增和编辑
+     * @param blog
+     * @param session
+     * @param attributes
+     * @return java.lang.String
+     * @author lizhuo
+     * @updateTime 2020/7/4 11:37
+     */
     @PostMapping("/blogs") //新增、编辑博客
     public String addBlog(Blog blog, HttpSession session, RedirectAttributes attributes){
         /**
@@ -152,7 +166,25 @@ public class BlogController {
          */
 
 
-        attributes.addFlashAttribute("msg", "新增成功");
+
+        Date date = new Date();
+        blog.setUpdateTime(date);
+        //System.out.println(blog);
+
+        if(blog.getId()==null){
+
+            blog.setUser((User) session.getAttribute("user"));
+            blog.setViews(0);
+            blog.setCreateTime(date);
+            blog.setTypeId(blog.getType().getId());
+            blog.setUserId(blog.getUser().getId());
+            blogService.saveBlog(blog);
+            attributes.addFlashAttribute("msg", "新增成功");
+        }else{
+            blog.setTypeId(blog.getType().getId());
+            blogService.updateBlog(blog);
+            attributes.addFlashAttribute("msg", "修改成功");
+        }
         return "redirect:/admin/blogs";
     }
 
