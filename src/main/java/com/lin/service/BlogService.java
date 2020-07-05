@@ -3,6 +3,7 @@ package com.lin.service;
 import com.lin.pojo.Blog;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @ClassName BlogService
@@ -29,6 +30,8 @@ public interface BlogService {
 
     List<Blog> getByTagId(Long tagId);  //根据标签id获取博客
 
+    Map<String,List<Blog> > archiveBlog();//根据时间归档blog
 
+    int countBlog();//查询所有blog条目
 
 }

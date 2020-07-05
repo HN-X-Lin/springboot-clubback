@@ -8,8 +8,7 @@ import com.lin.service.BlogService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 /**
  * @ClassName BlogServiceImpl
@@ -35,6 +34,14 @@ public class BlogServiceImpl implements BlogService {
         return blogDao.getAllBlog();
     }
 
+    /**
+     * @title saveBlog
+     * @description 后台新增blog
+     * @param blog
+     * @return int
+     * @author xiaolin
+     * @updateTime 2020/7/5 23:58
+     */
     @Override
     public int saveBlog(Blog blog) {
         blog.setCreateTime(new Date());
@@ -55,6 +62,14 @@ public class BlogServiceImpl implements BlogService {
         return flag;
     }
 
+    /**
+     * @title updateBlog
+     * @description 后台更新blog 
+     * @param blog
+     * @return int
+     * @author xiaolin
+     * @updateTime 2020/7/5 23:59
+     */
     @Override
     public int updateBlog(Blog blog) {
         blog.setUpdateTime(new Date());
@@ -76,6 +91,39 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> searchBlog(Blog blog) {
         return blogDao.searchBlog(blog);
+    }
+
+    /**
+     * @title archiveBlog
+     * @description 按年份归档blog  
+     * @param 
+     * @return java.util.Map<java.lang.String,java.util.List<com.lin.pojo.Blog>>
+     * @author xiaolin
+     * @updateTime 2020/7/6 0:01
+     */
+    @Override
+    public Map<String, List<Blog>> archiveBlog() {
+        
+        List<String> years = blogDao.findGroupYear();
+        Set<String> set = new HashSet<>(years);  //set去掉重复的年份
+
+        TreeMap<String, List<Blog>>map = new TreeMap<String, List<Blog>>(new Comparator<String>() {
+            @Override
+            public int compare(String o1, String o2) {
+                return o2.compareTo(o1);
+            }
+        });
+
+        for (String year : set) {
+            System.out.println(year);
+            map.put(year, blogDao.findByYear(year));
+        }
+        return map;
+    }
+
+    @Override
+    public int countBlog() {
+        return blogDao.getAllBlog().size();
     }
 
     @Override

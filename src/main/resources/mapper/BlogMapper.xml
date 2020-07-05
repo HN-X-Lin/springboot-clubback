@@ -20,6 +20,7 @@
         <result property="description" column="description"/>
         <result property="recommend" column="recommend"/>
         <result property="createTime" column="create_time"/>
+
         <result property="typeId" column="type_id"/>
         <result property="userId" column="user_id"/>
         <result property="tagIds" column="tag_ids"/>
@@ -71,15 +72,17 @@
             </if>
         </where>
     </select>
+
     <insert id="saveBlog" parameterType="blog">
         insert into t_blog values (#{id},#{title},#{content},#{firstPicture},#{flag},#{views},#{appreciation},
         #{shareStatement},#{commentabled},#{published},#{recommend},#{createTime},#{updateTime},#{typeId},#{userId},#{description},#{tagIds})
     </insert>
+
     <update id="updateBlog" parameterType="blog">
         update t_blog
         set title=#{title},content=#{content},first_picture=#{firstPicture},flag=#{flag},appreciation=#{appreciation},
         share_statement=#{shareStatement},commentabled=#{commentabled},published=#{published},
-        recommend=#{recommend},update_time=#{updateTime},type_id=#{typeId},
+        recommend = #{recommend},update_time = #{updateTime},type_id = #{typeId},
         description=#{description},tag_ids=#{tagIds}
         where id=#{id}
     </update>
@@ -93,4 +96,14 @@
         order by b.update_time desc
     </select>
 
+    <select id="findGroupYear" resultType="String">
+        select DATE_FORMAT(b.update_time, '%Y') from t_blog b order by b.update_time desc
+    </select>
+
+    <select id="findByYear" resultMap="blog">
+        select b.title, b.update_time, b.id, b.flag
+        from t_blog b
+        where DATE_FORMAT(b.update_time, '%Y') = #{year}
+        order by b.update_time desc
+    </select>
 </mapper>

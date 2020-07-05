@@ -3,10 +3,13 @@ package com.lin.dao;
 import com.lin.pojo.Blog;
 import com.lin.pojo.BlogAndTag;
 import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author xiaolin
@@ -36,4 +39,9 @@ public interface BlogDao {
     List<Blog> getByTagId(Long tagId);  //根据标签id获取博客
 
     int saveBlogAndTag(BlogAndTag blogAndTag);
+
+    List<Blog> findByYear(@Param("year") String year);  //按年份查询归档博客
+
+    List<String> findGroupYear();//已有年份的集合
+
 }
