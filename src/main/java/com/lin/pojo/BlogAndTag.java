@@ -15,6 +15,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class BlogAndTag {
+
     private Long tagId;
 
     private Long blogId;

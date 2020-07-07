@@ -1,10 +1,12 @@
 package com.lin.service.impl;
 
 import com.lin.dao.BlogDao;
+import com.lin.exception.NotFoundException;
 import com.lin.pojo.Blog;
 import com.lin.pojo.BlogAndTag;
 import com.lin.pojo.Tag;
 import com.lin.service.BlogService;
+import com.lin.util.MarkdownUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -134,5 +136,17 @@ public class BlogServiceImpl implements BlogService {
     @Override
     public List<Blog> getByTagId(Long tagId,String tagName) {
         return blogDao.getByTagId(tagId,tagName);
+    }
+
+    @Override
+    public Blog getDetailedBlog(Long id) {
+        Blog blog = blogDao.getDetailedBlog(id);
+        if (blog == null) {
+            throw new NotFoundException("该博客不存在");
+        }
+        System.out.println(blog.getUser().getAvatar());
+        String content = blog.getContent();
+        blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
+        return blog;
     }
 }

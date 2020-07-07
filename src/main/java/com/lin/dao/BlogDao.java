@@ -44,4 +44,6 @@ public interface BlogDao {
 
     List<String> findGroupYear();//已有年份的集合
 
+    Blog getDetailedBlog(Long id);//获取blog全部
+
 }

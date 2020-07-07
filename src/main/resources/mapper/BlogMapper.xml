@@ -117,4 +117,13 @@
         where DATE_FORMAT(b.update_time, '%Y') = #{year}
         order by b.update_time desc
     </select>
+
+    <select id="getDetailedBlog" resultMap="blog">  /*博客详情*/
+    select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
+           b.update_time,b.commentabled, b.share_statement, b.appreciation,
+           u.nickname, u.avatar,
+           tag.id tagid, tag.name tagname
+    from t_blog b, t_user u, t_tag tag, t_blog_tags tb
+    where b.user_id = u.id and tb.blog_id = b.id and tb.tag_id = tag.id and  b.id = #{id}
+    </select>
 </mapper>

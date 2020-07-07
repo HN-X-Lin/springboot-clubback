@@ -47,7 +47,6 @@ public class TagShowController {
         }
 
 //        List<Blog> blogs = blogService.getByTagId(id,tagService.getTag(id).getName());
-//
 //        PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
 //        System.out.println(111111);
 //        System.out.println(id+tagService.getTag(id).getName());

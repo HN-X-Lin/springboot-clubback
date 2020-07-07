@@ -34,4 +34,6 @@ public interface BlogService {
 
     int countBlog();//查询所有blog条目
 
+    Blog getDetailedBlog(Long id); // blog详细页
+
 }
