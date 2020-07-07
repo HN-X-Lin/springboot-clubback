@@ -36,4 +36,8 @@ public interface BlogService {
 
     Blog getDetailedBlog(Long id); // blog详细页
 
+    List<Blog> getIndexBlog();//首页blog展示
+
+    List<Blog> getAllRecommendBlog();//首页推荐blog展示
+
 }

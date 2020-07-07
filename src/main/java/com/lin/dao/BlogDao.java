@@ -46,4 +46,8 @@ public interface BlogDao {
 
     Blog getDetailedBlog(Long id);//获取blog全部
 
+    List<Blog> getIndexBlog();
+
+    List<Blog> getAllRecommendBlog();
+
 }

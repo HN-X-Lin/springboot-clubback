@@ -149,4 +149,14 @@ public class BlogServiceImpl implements BlogService {
         blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
         return blog;
     }
+
+    @Override
+    public List<Blog> getIndexBlog() {
+        return blogDao.getIndexBlog();
+    }
+
+    @Override
+    public List<Blog> getAllRecommendBlog() {
+        return blogDao.getAllRecommendBlog();
+    }
 }

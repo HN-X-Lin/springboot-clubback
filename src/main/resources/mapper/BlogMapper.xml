@@ -119,11 +119,27 @@
     </select>
 
     <select id="getDetailedBlog" resultMap="blog">  /*博客详情*/
-    select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
-           b.update_time,b.commentabled, b.share_statement, b.appreciation,
-           u.nickname, u.avatar,
-           tag.id tagid, tag.name tagname
-    from t_blog b, t_user u, t_tag tag, t_blog_tags tb
-    where b.user_id = u.id and tb.blog_id = b.id and tb.tag_id = tag.id and  b.id = #{id}
+        select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
+               b.update_time,b.commentabled, b.share_statement, b.appreciation,
+               u.nickname, u.avatar,
+               tag.id tagid, tag.name tagname
+        from t_blog b, t_user u, t_tag tag, t_blog_tags tb
+        where b.user_id = u.id and tb.blog_id = b.id and tb.tag_id = tag.id and  b.id = #{id}
+    </select>
+
+    <select id="getIndexBlog" resultMap="blog"> /* 首页blog显示*/
+        select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
+               t.name typename, t.id typeid,
+               u.nickname, u.avatar
+        from t_blog b, t_type t, t_user u
+        where b.type_id = t.id and u.id = b.user_id
+        order by b.update_time desc
+    </select>
+
+    <select id="getAllRecommendBlog" resultMap="blog"> /* 首页显示推荐排名前10*/
+        select id, title
+        from t_blog
+        where recommend > 0
+        order by recommend desc limit 10
     </select>
 </mapper>
