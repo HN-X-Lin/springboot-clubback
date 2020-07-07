@@ -36,7 +36,7 @@ public interface BlogDao {
 
     List<Blog> getByTypeId(Long typeId);  //根据类型id获取博客
 
-    List<Blog> getByTagId(Long tagId);  //根据标签id获取博客
+    List<Blog> getByTagId(Long tagId,String tagName);  //根据标签id获取博客,tagName用来在数据库查询的时候去重
 
     int saveBlogAndTag(BlogAndTag blogAndTag);
 

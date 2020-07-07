@@ -36,7 +36,7 @@ public interface TagDao {
 
     int deleteTag(Long id); //删除
 
-    List<Tag> getBlogTag();
+    //List<Tag> getBlogTag();
 
 
 }

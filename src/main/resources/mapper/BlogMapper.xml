@@ -96,6 +96,17 @@
         order by b.update_time desc
     </select>
 
+    <select id="getByTagId" resultMap="blog">
+        <bind name="t_tagid" value="'%'+ tagId +'%'"/>
+        select  b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
+        a.id tagid, a.name tagname,
+        t.id typeid, t.name typename,
+        u.nickname, u.avatar
+        from t_blog b, t_tag a, t_type t, t_user u
+        where b.tag_ids like #{t_tagid} and a.name=#{tagName} and u.id = b.user_id
+        order by b.update_time desc
+    </select>
+
     <select id="findGroupYear" resultType="String">
         select DATE_FORMAT(b.update_time, '%Y') from t_blog b order by b.update_time desc
     </select>

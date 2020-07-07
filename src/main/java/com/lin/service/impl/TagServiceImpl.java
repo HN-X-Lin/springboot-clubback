@@ -54,4 +54,10 @@ public class TagServiceImpl implements TagService {
     public int deleteTag(Long id) {
         return tagDao.deleteTag(id);
     }
+
+//    @Override
+//    public List<Tag> getBlogTag(){
+//        return tagDao.getBlogTag();
+//    }
+
 }

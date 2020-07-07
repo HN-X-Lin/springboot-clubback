@@ -23,8 +23,12 @@ public interface TagService {
 
     List<Tag> getTagByString(String text);   //从字符串中获取tag集合
 
+    //List<Tag> getBlogTag();
+
     int updateTag(Tag tag); //更新标签
 
     int deleteTag(Long id);//删除标签
+
+
 
 }

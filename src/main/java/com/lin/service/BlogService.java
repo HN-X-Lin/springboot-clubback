@@ -28,7 +28,7 @@ public interface BlogService {
 
     List<Blog> getByTypeId(Long typeId);  //根据类型id获取博客
 
-    List<Blog> getByTagId(Long tagId);  //根据标签id获取博客
+    List<Blog> getByTagId(Long tagId,String tagName);  //根据标签id获取博客
 
     Map<String,List<Blog> > archiveBlog();//根据时间归档blog
 

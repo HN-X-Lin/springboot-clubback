@@ -132,7 +132,7 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getByTagId(Long tagId) {
-        return blogDao.getByTagId(tagId);
+    public List<Blog> getByTagId(Long tagId,String tagName) {
+        return blogDao.getByTagId(tagId,tagName);
     }
 }
