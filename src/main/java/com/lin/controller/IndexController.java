@@ -38,9 +38,10 @@ public class IndexController {
     private TagService tagService;
 
     @GetMapping("/")
-    public String toIndex(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
+    public String index(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pagenum, Model model){
 
         PageHelper.startPage(pagenum, 8);
+
         List<Blog> allBlog = blogService.getIndexBlog();
         List<Type> allType = typeService.getBlogType();  //获取博客的类型(联表查询)
 
@@ -51,13 +52,15 @@ public class IndexController {
         List<Blog> recommendBlog =blogService.getAllRecommendBlog();  //获取推荐博客
 
         //得到分页结果对象
-        PageInfo pageInfo = new PageInfo(allBlog);
+        PageInfo<Blog> pageInfo = new PageInfo<>(allBlog);
+
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("tags", allTag);
         model.addAttribute("types", allType);
         model.addAttribute("recommendBlogs", recommendBlog);
         return "index";
     }
+
 
 
     @GetMapping("/blog/{id}")

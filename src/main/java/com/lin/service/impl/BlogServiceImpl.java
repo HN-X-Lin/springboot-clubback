@@ -144,7 +144,6 @@ public class BlogServiceImpl implements BlogService {
         if (blog == null) {
             throw new NotFoundException("该博客不存在");
         }
-        System.out.println(blog.getUser().getAvatar());
         String content = blog.getContent();
         blog.setContent(MarkdownUtils.markdownToHtmlExtensions(content));  //将Markdown格式转换成html
         return blog;
