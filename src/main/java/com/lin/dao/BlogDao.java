@@ -46,8 +46,10 @@ public interface BlogDao {
 
     Blog getDetailedBlog(Long id);//获取blog全部
 
-    List<Blog> getIndexBlog();
+    List<Blog> getIndexBlog();//首页blog显示
 
-    List<Blog> getAllRecommendBlog();
+    List<Blog> getAllRecommendBlog();//获得推荐blog
+
+    List<Blog> getSearchBlog(@Param("info") String info);//全站搜索
 
 }

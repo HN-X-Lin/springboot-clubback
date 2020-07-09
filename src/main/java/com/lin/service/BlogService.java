@@ -40,4 +40,6 @@ public interface BlogService {
 
     List<Blog> getAllRecommendBlog();//首页推荐blog展示
 
+    List<Blog> getSearchBlog(String info);
+
 }

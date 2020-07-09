@@ -2,6 +2,8 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 
+
+
 <mapper namespace="com.lin.dao.BlogDao">
 
     <resultMap id="blog" type="Blog">
@@ -142,4 +144,16 @@
         where recommend > 0
         order by recommend desc limit 10
     </select>
+
+    <select id="getSearchBlog" resultMap="blog">
+        <bind name="pattern" value="'%' + info + '%'" />
+        select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
+        t.name typename,
+        u.nickname, u.avatar
+        from t_blog b, t_type t, t_user u
+        where b.type_id = t.id and  u.id = b.user_id and (b.title like #{pattern} or b.content like  #{pattern})
+        order by b.update_time desc
+    </select>
+
+
 </mapper>

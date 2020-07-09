@@ -38,6 +38,7 @@ public class TagShowController {
             id=tags.get(0).getId();
         }
         for(Tag tag : tags){
+            System.out.println(tag);
             tag.setBlogs(blogService.getByTagId(tag.getId(),tag.getName()));//查询有该标签的所有blog
             if(id == tag.getId()){
                 PageInfo<Blog> pageInfo = new PageInfo<>(tag.getBlogs());

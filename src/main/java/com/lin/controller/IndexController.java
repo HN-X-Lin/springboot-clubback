@@ -13,9 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import javax.jws.WebParam;
 import java.util.List;
 
 /**
@@ -61,8 +61,6 @@ public class IndexController {
         return "index";
     }
 
-
-
     @GetMapping("/blog/{id}")
     public String blogs(@PathVariable Long id,Model model){
 
@@ -72,4 +70,13 @@ public class IndexController {
         return "blog";
     }
 
+    @PostMapping("/search")
+    public String search(@RequestParam String info, Model model){
+
+        List<Blog> searchBlog = blogService.getSearchBlog(info);
+        PageInfo pageInfo = new PageInfo(searchBlog);
+        model.addAttribute("pageInfo", pageInfo);
+        model.addAttribute("info", info);
+        return "search";
+    }
 }

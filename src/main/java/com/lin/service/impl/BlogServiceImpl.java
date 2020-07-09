@@ -158,4 +158,9 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getAllRecommendBlog() {
         return blogDao.getAllRecommendBlog();
     }
+
+    @Override
+    public List<Blog> getSearchBlog(String info) {
+        return blogDao.getSearchBlog(info);
+    }
 }
