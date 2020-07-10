@@ -1,26 +1,26 @@
 
 body {
-    background: url("/images/bg2.jpg");   //默认背景
+    background: url("../images/bg2.jpg");   //默认背景
     background-size: cover;
 }
 .index-bg{
-    background: url("/images/bg4.jpg");
+    background: url("../images/bg4.jpg");
     background-size: cover;
 }
 .type-bg{
-    background: url("/images/index.jpg");
+    background: url("../images/index.jpg");
     background-size: cover;
 }
 .tag-bg{
-    background: url("/images/bg1.jpeg");
+    background: url("../images/bg1.jpg");
     background-size: cover;
 }
 .archives-bg{
-    background: url("/images/bg6.jpg");
+    background: url("../images/bg6.jpg");
     background-size: cover;
 }
 .aboutme-bg{
-    background: url("/images/bg9.jpg");
+    background: url("../images/bg9.jpg");
     background-size: cover;
 }
 
