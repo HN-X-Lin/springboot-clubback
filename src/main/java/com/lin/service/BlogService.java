@@ -22,6 +22,14 @@ public interface BlogService {
 
     int updateBlog(Blog blog);
 
+    int updateBlogType(Long typeId,Long blogId);
+
+    int updateBlogTag(Blog blog);
+
+    int deleteBlogId_TagId(Long tag_id);
+
+    int saveBlogId_TagId(Long blog_id,Long tag_id);
+
     int deleteBlog(Long id);
 
     List<Blog> searchBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客

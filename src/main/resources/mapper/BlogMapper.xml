@@ -89,6 +89,26 @@
         where id=#{id}
     </update>
 
+    <update id="updateBlogType" parameterType="Long">
+        update t_blog
+        set type_id = #{typeId}
+        where id=#{blogId}
+    </update>
+
+    <update id="updateBlogTag" parameterType="blog">
+        update t_blog
+        set tag_ids = #{tagIds}
+        where id=#{id}
+    </update>
+
+    <delete id="deleteBlogId_TagId" parameterType="Long">
+        delete from t_blog_tags where tag_id = #{tag_id}
+    </delete>
+
+    <insert id="saveBlogId_TagId" parameterType="Long">
+        insert into t_blog_tags(tag_id,blog_id) values (#{tag_id}, #{blog_id})
+    </insert>
+
     <select id="getByTypeId" resultMap="blog">
         select b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
                t.name typename, t.id typeid,
@@ -100,7 +120,7 @@
 
     <select id="getByTagId" resultMap="blog">
         <bind name="t_tagid" value="'%'+ tagId +'%'"/>
-        select  b.id, b.title, b.first_picture, b.views, b.update_time, b.description,
+        select  b.id, b.title, b.first_picture, b.views, b.update_time, b.description, b.tag_ids,
         a.id tagid, a.name tagname,
         t.id typeid, t.name typename,
         u.nickname, u.avatar
