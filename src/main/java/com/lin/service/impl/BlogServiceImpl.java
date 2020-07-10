@@ -163,4 +163,24 @@ public class BlogServiceImpl implements BlogService {
     public List<Blog> getSearchBlog(String info) {
         return blogDao.getSearchBlog(info);
     }
+
+    @Override
+    public  int updateBlogType(Long typeId,Long blogId){
+        return blogDao.updateBlogType(typeId,blogId);
+    }
+
+    @Override
+    public int updateBlogTag(Blog blog){
+        return blogDao.updateBlogTag(blog);
+    }
+
+    @Override
+    public  int deleteBlogId_TagId(Long tag_id){
+        return blogDao.deleteBlogId_TagId(tag_id);
+    }
+
+    @Override
+    public int saveBlogId_TagId(Long blog_id,Long tag_id){
+        return blogDao.saveBlogId_TagId(blog_id,tag_id);
+    }
 }

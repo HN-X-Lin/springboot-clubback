@@ -30,7 +30,15 @@ public interface BlogDao {
 
     int updateBlog(Blog blog);
 
+    int updateBlogTag(Blog blog);
+
+    int updateBlogType(Long typeId,Long blogId);
+
     int deleteBlog(Long id);
+
+    int deleteBlogId_TagId(@Param("tag_id") Long tag_id);
+
+    int saveBlogId_TagId(@Param("blog_id")Long blog_id,@Param("tag_id")Long tag_id);
 
     List<Blog> searchBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客
 
@@ -51,5 +59,6 @@ public interface BlogDao {
     List<Blog> getAllRecommendBlog();//获得推荐blog
 
     List<Blog> getSearchBlog(@Param("info") String info);//全站搜索
+
 
 }

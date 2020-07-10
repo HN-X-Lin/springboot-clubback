@@ -160,7 +160,7 @@ public class BlogController {
 
         Date date = new Date();
         blog.setUpdateTime(date);
-        //System.out.println(blog);
+
         if(blog.getId()==null){
             blog.setUser((User) session.getAttribute("user"));
             blog.setViews(0);
@@ -171,6 +171,7 @@ public class BlogController {
             attributes.addFlashAttribute("msg", "新增成功");
         }else{
             blog.setTypeId(blog.getType().getId());
+            System.out.println(blog);
             blogService.updateBlog(blog);
             attributes.addFlashAttribute("msg", "修改成功");
         }

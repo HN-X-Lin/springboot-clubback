@@ -2,7 +2,9 @@ package com.lin.controller.admin;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.lin.pojo.Blog;
 import com.lin.pojo.Type;
+import com.lin.service.BlogService;
 import com.lin.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,6 +27,9 @@ public class TypeController {
 
     @Autowired
     private TypeService typeService;
+
+    @Autowired
+    private BlogService blogService;
 
     /**
      * @title types
@@ -129,7 +134,15 @@ public class TypeController {
      */
     @GetMapping("/types/{id}/delete")
     public String delete(@PathVariable Long id, RedirectAttributes attributes){
+        Type type=typeService.getType(id);
+        type.setBlogs(blogService.getByTypeId(type.getId()));
+
+        for(Blog blog: type.getBlogs()){//将原来属于这一分类的blog变为‘其它’分类
+            System.out.println(blog);
+            blogService.updateBlogType((long)0,blog.getId());
+        }
         typeService.deleteType(id);
+
         attributes.addFlashAttribute("msg", "删除成功");
         return "redirect:/admin/types";
     }
