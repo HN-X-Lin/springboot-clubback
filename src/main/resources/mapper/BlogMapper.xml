@@ -101,6 +101,12 @@
         where id=#{id}
     </update>
 
+    <update id="updateViews" parameterType="Long">
+        update t_blog
+        set views = #{views}
+        where id = #{blogId}
+    </update>
+
     <delete id="deleteBlogId_TagId" parameterType="Long">
         delete from t_blog_tags where tag_id = #{tag_id}
     </delete>

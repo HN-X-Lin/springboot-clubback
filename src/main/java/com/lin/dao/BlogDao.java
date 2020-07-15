@@ -4,12 +4,9 @@ import com.lin.pojo.Blog;
 import com.lin.pojo.BlogAndTag;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
-import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 /**
  * @author xiaolin
@@ -33,6 +30,8 @@ public interface BlogDao {
     int updateBlogTag(Blog blog);
 
     int updateBlogType(Long typeId,Long blogId);
+
+    int updateViews(@Param("blogId") Long blogId,@Param("views") Long views);
 
     int deleteBlog(Long id);
 

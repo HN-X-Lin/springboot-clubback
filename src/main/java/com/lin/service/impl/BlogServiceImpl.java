@@ -183,4 +183,9 @@ public class BlogServiceImpl implements BlogService {
     public int saveBlogId_TagId(Long blog_id,Long tag_id){
         return blogDao.saveBlogId_TagId(blog_id,tag_id);
     }
+
+    @Override
+    public int updateViews(Long blogId,Long views){
+        return blogDao.updateViews(blogId,views);
+    }
 }

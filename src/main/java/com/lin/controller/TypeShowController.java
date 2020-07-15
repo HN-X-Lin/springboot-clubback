@@ -6,6 +6,7 @@ import com.lin.pojo.Blog;
 import com.lin.pojo.Type;
 import com.lin.service.BlogService;
 import com.lin.service.TypeService;
+import com.lin.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,8 +28,12 @@ public class TypeShowController {
 
     @Autowired
     private TypeService typeService;
+
     @Autowired
     private BlogService blogService;
+
+    @Autowired
+    private RedisUtil redisUtil;
 
     @GetMapping("types/{id}")
     public String types(@PathVariable Long id, Model model){
@@ -40,6 +45,14 @@ public class TypeShowController {
             id = types.get(0).getId();
         }
         List<Blog> blogs = blogService.getByTypeId(id);
+        for(Blog blog: blogs){
+            String key = "blog"+blog.getId();
+            if(redisUtil.get(key) != null){//获取redis中的views，mysql中的可能没更新
+                blog.setViews((Integer) redisUtil.get(key));
+            }else{
+                redisUtil.set(key,blog.getViews());
+            }
+        }
         PageInfo<Blog> pageInfo = new PageInfo<>(blogs);
 
         model.addAttribute("pageInfo", pageInfo);

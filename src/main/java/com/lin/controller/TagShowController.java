@@ -6,6 +6,7 @@ import com.lin.pojo.Tag;
 import com.lin.pojo.Type;
 import com.lin.service.BlogService;
 import com.lin.service.TagService;
+import com.lin.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,6 +31,9 @@ public class TagShowController {
     @Autowired
     private BlogService blogService;
 
+    @Autowired
+    private RedisUtil redisUtil;
+
     @GetMapping("tags/{id}")
     public String tags(@PathVariable Long id, Model model){
         List<Tag> tags = tagService.getAllTag();
@@ -41,6 +45,16 @@ public class TagShowController {
             System.out.println(tag);
             tag.setBlogs(blogService.getByTagId(tag.getId(),tag.getName()));//查询有该标签的所有blog
             if(id == tag.getId()){
+
+                for(Blog blog: tag.getBlogs()){
+                    String key = "blog"+blog.getId();
+                    if(redisUtil.get(key) != null){//获取redis中的views，mysql中的可能没更新
+                        blog.setViews((Integer) redisUtil.get(key));
+                    }else{
+                        redisUtil.set(key,blog.getViews());
+                    }
+                }
+
                 PageInfo<Blog> pageInfo = new PageInfo<>(tag.getBlogs());
                 model.addAttribute("pageInfo", pageInfo);
             }

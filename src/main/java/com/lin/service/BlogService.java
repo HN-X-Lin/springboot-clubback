@@ -26,6 +26,8 @@ public interface BlogService {
 
     int updateBlogTag(Blog blog);
 
+    int updateViews(Long blogId,Long views);
+
     int deleteBlogId_TagId(Long tag_id);
 
     int saveBlogId_TagId(Long blog_id,Long tag_id);
