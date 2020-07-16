@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
  * @ClassName ArchivesController
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.GetMapping;
  * @Version V1.0
  */
 @Controller
+@RequestMapping("/user")
 public class ArchivesController {
     @Autowired
     private BlogService blogService;
@@ -24,6 +26,6 @@ public class ArchivesController {
         model.addAttribute("archiveMap",blogService.archiveBlog());
         model.addAttribute("blogCount",blogService.countBlog());
 
-        return "archives";
+        return "user/archives";
     }
 }

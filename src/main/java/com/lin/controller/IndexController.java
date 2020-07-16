@@ -13,10 +13,7 @@ import com.lin.util.RedisUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -73,12 +70,12 @@ public class IndexController {
         model.addAttribute("types", allType);
         model.addAttribute("recommendBlogs", recommendBlog);
 
-        return "index";
+        return "user/index";
     }
 
 
 
-    @GetMapping("/blog/{id}")
+    @GetMapping("/user/blog/{id}")
     public String blogs(@PathVariable Long id,Model model){
 
         //System.out.println("11111111111111");
@@ -105,10 +102,10 @@ public class IndexController {
 
         model.addAttribute("blog", blog);
 
-        return "blog";
+        return "user/blog";
     }
 
-    @PostMapping("/search")
+    @PostMapping("/user/search")
     public String search(@RequestParam String info, Model model){
 
 
@@ -116,6 +113,6 @@ public class IndexController {
         PageInfo pageInfo = new PageInfo(searchBlog);
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("info", info);
-        return "search";
+        return "user/search";
     }
 }

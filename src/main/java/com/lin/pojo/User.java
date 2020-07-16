@@ -25,7 +25,7 @@ public class User {
     private String password;//密码
     private String email;//邮箱
     private String avatar;//头像图片
-    private Integer type;
+    private String roles; //角色权限
     private Date createTime;//创建时间
     private Date updateTime;//更新时间
 

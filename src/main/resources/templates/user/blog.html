@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-<head  th:replace="_fragments :: head(~{::title})">
+<head  th:replace="user/_fragments :: head(~{::title})">
     <title>博客详情</title>
 </head>
 
 <body>
 
 <!--头部导航-->
-<nav th:replace="_fragments :: menu(0)" ></nav>
+<nav th:replace="user/_fragments :: menu(0)" ></nav>
 
 <!--中间内容-->
 <div id="waypoint" class="m-container-small m-padded-tb-big animated fadeIn">
@@ -203,12 +203,12 @@
 <br>
 
 <!--底部footer-->
-<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
+<footer th:replace="user/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive">
 
 </footer>
 
 <!--导入的script-->
-<th:block th:replace="_fragments :: script">
+<th:block th:replace="user/_fragments :: script">
 
 </th:block>
 

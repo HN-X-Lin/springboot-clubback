@@ -2,26 +2,33 @@
 body {
     background: url("../images/bg2.jpg");   //默认背景
     background-size: cover;
+    background-attachment:fixed
+
 }
 .index-bg{
     background: url("../images/bg4.jpg");
     background-size: cover;
+    background-attachment:fixed
 }
 .type-bg{
     background: url("../images/index.jpg");
     background-size: cover;
+    background-attachment:fixed
 }
 .tag-bg{
     background: url("../images/bg1.jpg");
     background-size: cover;
+    background-attachment:fixed
 }
 .archives-bg{
     background: url("../images/bg6.jpg");
     background-size: cover;
+    background-attachment:fixed
 }
 .aboutme-bg{
     background: url("../images/bg9.jpg");
     background-size: cover;
+    background-attachment:fixed
 }
 
 
