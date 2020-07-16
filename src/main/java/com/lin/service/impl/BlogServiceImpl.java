@@ -32,8 +32,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> getAllBlog() {
-        return blogDao.getAllBlog();
+    public List<Blog> getAllBlog(Long user_id) {
+        return blogDao.getAllBlog(user_id);
     }
 
     /**
@@ -91,8 +91,8 @@ public class BlogServiceImpl implements BlogService {
     }
 
     @Override
-    public List<Blog> searchBlog(Blog blog) {
-        return blogDao.searchBlog(blog);
+    public List<Blog> searchBlog(Blog blog,Long user_id) {
+        return blogDao.searchBlog(blog,user_id);
     }
 
     /**
@@ -125,7 +125,7 @@ public class BlogServiceImpl implements BlogService {
 
     @Override
     public int countBlog() {
-        return blogDao.getAllBlog().size();
+        return blogDao.getAllBlog(1l).size();
     }
 
     @Override

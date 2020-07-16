@@ -62,9 +62,10 @@ public class BlogController {
      * @updateTime 2020/6/30 13:14
      */
     @GetMapping("/blogs")
-    public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
+    public String blogs(@RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum,HttpSession session, Model model){
         PageHelper.startPage(pagenum, 5);
-        List<Blog> allBlog = blogService.getAllBlog();
+        User user = (User)session.getAttribute("user");
+        List<Blog> allBlog = blogService.getAllBlog(user.getId());
 //        System.out.println(allBlog.get(0));
         //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
@@ -133,10 +134,11 @@ public class BlogController {
      * @updateTime 2020/6/30 18:58
      */
     @PostMapping("/blogs/search")  //按条件查询博客
-    public String searchBlogs(Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
+    public String searchBlogs(HttpSession session, Blog blog, @RequestParam(required = false,defaultValue = "1",value = "pagenum")int pagenum, Model model){
         PageHelper.startPage(pagenum, 5);
         //System.out.println(blog);
-        List<Blog> allBlog = blogService.searchBlog(blog);
+        User user = (User)session.getAttribute("user");
+        List<Blog> allBlog = blogService.searchBlog(blog,user.getId());
         //得到分页结果对象
         PageInfo pageInfo = new PageInfo(allBlog);
         model.addAttribute("pageInfo", pageInfo);

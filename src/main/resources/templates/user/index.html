@@ -71,10 +71,10 @@
                 <div class="ui bottom attached segment" >
                     <div class="ui middle aligned two column grid">
                         <div class="column">
-                            <div class="item"><a class="ui mini blue basic button" th:href="@{/user/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a></div>
+                            <div class="item"><a class="ui mini blue basic button" th:href="@{/(pageNum=${pageInfo.hasPreviousPage}?${pageInfo.prePage}:1)}" th:unless="${pageInfo.isFirstPage}">上一页</a></div>
                         </div>
                         <div class="right aligned column">
-                            <div class="item"><a class="ui mini blue basic button" th:href="@{/user/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a></div>
+                            <div class="item"><a class="ui mini blue basic button" th:href="@{/(pageNum=${pageInfo.hasNextPage}?${pageInfo.nextPage}:${pageInfo.pages})}" th:unless="${pageInfo.isLastPage}">下一页</a></div>
                         </div>
                     </div>
                 </div>

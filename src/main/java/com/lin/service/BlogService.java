@@ -16,7 +16,7 @@ public interface BlogService {
 
     Blog getBlog(Long id);
 
-    List<Blog> getAllBlog();//查询所有博客
+    List<Blog> getAllBlog(Long user_id);//查询所有博客
 
     int saveBlog(Blog blog);
 
@@ -34,7 +34,7 @@ public interface BlogService {
 
     int deleteBlog(Long id);
 
-    List<Blog> searchBlog(Blog blog);  //后台根据标题、分类、推荐搜索博客
+    List<Blog> searchBlog(Blog blog,Long user_id);  //后台根据标题、分类、推荐搜索博客
 
     List<Blog> getByTypeId(Long typeId);  //根据类型id获取博客
 
