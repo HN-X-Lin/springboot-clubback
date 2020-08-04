@@ -10,6 +10,7 @@
         <result property="content" column="content"/>
         <result property="flag" column="flag"/>
         <result property="views" column="views"/>
+        <result property="blog_like" column="blog_like"/>
         <result property="updateTime" column="update_time"/>
         <result property="typeId" column="type_id"/>
         <result property="firstPicture" column="first_picture"/>
@@ -154,7 +155,7 @@
     </select>
 
     <select id="getDetailedBlog" resultMap="blog">  /*博客详情*/
-        select b.id, b.first_picture, b.flag, b.title, b.content, b.views,
+        select b.id, b.first_picture, b.flag, b.title, b.content, b.views, b.blog_like,
                b.update_time,b.commentabled, b.share_statement, b.appreciation,
                u.nickname, u.avatar,
                tag.id tagid, tag.name tagname

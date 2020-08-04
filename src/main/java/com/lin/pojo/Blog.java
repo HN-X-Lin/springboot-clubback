@@ -21,13 +21,16 @@ public class Blog {
     private String firstPicture;
     private String flag;//是否原创
     private Integer views;//浏览阅读人数
+    private Integer blog_like;//浏览阅读人数
     private boolean appreciation;
     private boolean shareStatement;
     private boolean commentabled;
     private boolean published;
     private boolean recommend;
+    private boolean likeFlag;//是否已点赞
     private Date createTime;//创作时间
     private Date updateTime;//更新时间
+
 
     //这个属性用来在mybatis中进行连接查询的
     private Long typeId;

@@ -2,14 +2,14 @@ package com.lin.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.lin.config.RedisConfig;
-import com.lin.pojo.Blog;
-import com.lin.pojo.Tag;
-import com.lin.pojo.Type;
+import com.lin.pojo.*;
 import com.lin.service.BlogService;
+import com.lin.service.LikeService;
 import com.lin.service.TagService;
 import com.lin.service.TypeService;
 import com.lin.util.RedisUtil;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -38,6 +38,9 @@ public class IndexController {
 
     @Autowired
     private RedisUtil redisUtil;
+
+    @Autowired
+    private LikeService likeService;
 
     @GetMapping("/")
     public String index(@RequestParam(required = false,defaultValue = "1",value = "pageNum")int pagenum, Model model){
@@ -82,6 +85,36 @@ public class IndexController {
         Blog blog = blogService.getDetailedBlog(id);
         String key="blog"+blog.getId();//key为获取redis中数据key
 
+        Subject subject = SecurityUtils.getSubject();
+        User user = (User) subject.getPrincipal();
+
+
+        String keyLikes = "blogLikes"+blog.getId();
+        if (user == null){//进入blog详细页面时点赞按钮的显示状态
+            blog.setLikeFlag(false);
+        }else{
+            String keyFlag = "blog" + blog.getId() + "user" + user.getId();
+            Like like = likeService.getLike(user.getId(),blog.getId());
+            if(like != null && redisUtil.get(keyFlag) == null){//当mysql中该用户已存入数据，redis未存入数据时
+                redisUtil.set(keyFlag,true);
+                blog.setLikeFlag(true);
+            }else if(redisUtil.get(keyFlag) != null){//redis已存入数据
+                blog.setLikeFlag(true);
+            }else {//该用户没有给blog点赞
+                blog.setLikeFlag(false);
+            }
+        }
+
+
+        if(redisUtil.get(keyLikes)==null){//blog的点赞数
+            redisUtil.set(keyLikes,blog.getBlog_like());//redis中不存在时插入
+        }else {
+            blog.setBlog_like((Integer) redisUtil.get(keyLikes));//存在取用
+        }
+
+
+
+
         if(redisUtil.get(key)==null){//判断redis中是否有该blog的views
             redisUtil.set(key,blog.getViews());//没有时添加该key-value值
             redisUtil.incr(key,1);//浏览数+1
@@ -114,5 +147,33 @@ public class IndexController {
         model.addAttribute("pageInfo", pageInfo);
         model.addAttribute("info", info);
         return "user/search";
+    }
+
+    
+    /**
+     * @title IndexController
+     * @description  点赞按钮
+     * @param uid
+     * @param bid
+     * @return java.lang.String
+     * @author lizhuo
+     * @updateTime 2020/8/4 10:41
+     */
+    @RequestMapping("user/blog/{id}/like")
+    @ResponseBody//将返回的数据转换为json格式
+    public String changLike(Long uid, Long bid){
+        String key = "blog"+bid+"user"+uid;
+        String keyLikes = "blogLikes"+bid;
+        String flag = "";
+        if(redisUtil.get(key)!=null){//取消点赞
+            redisUtil.del(key);
+            redisUtil.decr(keyLikes,1);
+            flag = "no";
+        }else{//点赞
+            redisUtil.set(key,true);
+            redisUtil.incr(keyLikes,1);
+            flag = "ok";
+        }
+        return flag;
     }
 }

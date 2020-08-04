@@ -49,8 +49,20 @@
                 <div class="ui basic teal left pointing label" th:each="tag : ${blog.tags}" th:text="${tag.name}">方法论</div>
             </div>
 
+<!--            点赞-->
+            <div  id="buttons-like" class="ui center aligned basic segment">
+<!--                'display:' + @{(${collect.Praise} ? 'none' : 'inline-block')} + ''-->
+<!--&lt;!&ndash;                th:onclick="'changLike('+${session.user}+','+${blog.id}+','+${blog.likeFlag}+');'"&ndash;&gt;-->
+<!--                th:onclick="'javascript:changLike(\''+${session.user}+'\',\''+${blog.id}+'\',\''+${blog.likeFlag}+'\')'"-->
+<!--                <input type="button" value="删除" th:onclick="del([[${name}]],[[${pwd}]])">-->
+                <button id="like" type="button" class="ui button" th:onclick="changLike([[${session.user}]],[[${blog.id}]])">
+                    <i class="thumbs up icon"></i>
+                    <span id="likes"  th:valuetype="${blog.blog_like}" th:text="${blog.blog_like}"></span></button>
+            </div>
             <!--赞赏-->
             <div th:if="${blog.appreciation}">
+
+
                 <div class="ui center aligned basic segment">
                     <button id="payButton" class="ui orange basic circular button">赞赏</button>
                 </div>
@@ -212,8 +224,16 @@
 
 </th:block>
 
-
+<!--<script src="/js/jquery-3.5.1.min.js"></script>-->
 <script th:inline="javascript">
+
+    var flag =[[${blog.likeFlag}]];
+    if(flag==false){
+        document.getElementById("like").style.background="red";
+    }else
+    {
+        document.getElementById("like").style.background="green";
+    }
 
     $('.menu.toggle').click(function () {
         $('.m-item').toggleClass('m-mobile-hide');
@@ -224,7 +244,6 @@
         on : 'click',
         position: 'bottom center'
     });
-
     tocbot.init({
         // Where to render the table of contents.
         tocSelector: '.js-toc',
@@ -345,6 +364,33 @@
         $("[name='content']").attr("placeholder", "@"+commentNickname).focus();
         $("[name='parentComment.id']").val(commentId);
         $(window).scrollTo($('#comment-form'),500);
+    }
+
+    //点赞按钮
+    function changLike(user,bid) {
+        var values = document.getElementById("likes").innerText;//获取点击时的点赞数
+        if(user == null){//未登录时点击按钮进入登录页面
+            var loginhref = "http://localhost:8080/admin/toLogin";
+            location.href = loginhref;
+        }else{
+            $.post({
+                url:"${pageContext.request.contextPath}/like",
+                data:{'uid':user.id,'bid':bid},
+                success:function (data) {
+                    if(data.toString()=='ok'){
+                        $("#like").css("background","green");//更新点击后按钮颜色
+                        values++;
+                        // console.log(values);
+                        document.getElementById("likes").innerText=values;//更新点击按钮后显示的点赞数
+                    }else{
+                        $("#like").css("background","red");//更新点击后按钮颜色
+                        values--;
+                        // console.log(values);
+                        document.getElementById("likes").innerText=values;//更新点击按钮后显示的点赞数
+                    }
+                }
+            });
+            }
     }
 
 
