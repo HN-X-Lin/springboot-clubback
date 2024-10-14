@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head th:replace="_fragments :: head(~{::title})">
+<head th:replace="user/_fragments :: head(~{::title})">
     <title>错误</title>
 </head>
 
 <body>
 
 <!--头部导航-->
-<nav  th:replace="_fragments :: menu(0)" ></nav>
+<nav  th:replace="user/_fragments :: menu(0)" ></nav>
 
 <br>
 <br>
@@ -29,6 +29,6 @@
 
 
 <!--底部footer-->
-<footer th:replace="_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive"></footer>
+<footer th:replace="user/_fragments :: footer" class="ui inverted vertical segment m-padded-tb-massive"></footer>
 </body>
 </html>

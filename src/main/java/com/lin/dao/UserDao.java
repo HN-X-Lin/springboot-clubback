@@ -16,6 +16,16 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface UserDao {
 
-    User queryByUsernameAndPassword(@Param("username") String username, @Param("password") String password);
+    /**
+     * @title queryByUsernameAndPassword
+     * @description  用于登陆检查
+     * @param username
+     * @return com.lin.pojo.User
+     * @author xiaolin
+     * @updateTime 2020/6/24 16:00
+     */
+    User queryUser(@Param("username") String username);
+
+
 
 }

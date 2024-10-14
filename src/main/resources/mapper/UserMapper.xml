@@ -4,8 +4,8 @@
 
 <mapper namespace="com.lin.dao.UserDao">
 
-    <select id="queryByUsernameAndPassword" resultType="com.lin.pojo.User">
-        select * from t_user
-        where username = #{username} and password = #{password};
+    <select id="queryUser" resultType="User">
+        select id, nickname, username, password, email, avatar, roles, create_time, update_time from t_user
+        where username = #{username};
     </select>
 </mapper>

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.lin.dao.TagDao">
+
+    <!--两个id可能会相冲，取别名即可-->
+    <resultMap id="tags" type="Tag">
+        <id property="id" column="tid"/>
+        <result property="name" column="name"/>
+        <collection property="blogs" ofType="Blog">
+            <id property="id" column="bid"/>
+            <result property="title" column="title"/>
+        </collection>
+    </resultMap>
+
+    <select id="getAllTag" resultType="Tag">
+        select  * from t_tag
+    </select>
+
+    <delete id="deleteTag">
+        delete from t_tag where id=#{id}
+    </delete>
+
+    <insert id="saveTag" parameterType="Tag">
+        insert into t_tag values (#{id},#{name})
+    </insert>
+
+    <select id="getTag" resultType="Tag">
+        select * from t_tag where id = #{id}
+    </select>
+
+    <select id="getTagByName" resultType="Tag">
+        select * from t_tag where name = #{name}
+    </select>
+
+    <update id="updateTag" parameterType="Tag">
+        update t_tag
+        set name = #{name}
+        where id = #{id}
+    </update>
+
+</mapper>

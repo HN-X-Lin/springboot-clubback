@@ -19,8 +19,8 @@ import java.util.List;
 @NoArgsConstructor
 public class Type {
 
-    private Long id;
-    private String name;
+    private Long id;//类型id号
+    private String name;//类型名称
     private List<Blog> blogs = new ArrayList<>();
 
 }

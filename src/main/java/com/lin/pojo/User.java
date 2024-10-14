@@ -19,15 +19,15 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 public class User {
-    private Long id;
-    private String nickname;
-    private String username;
-    private String password;
-    private String email;
-    private String avatar;
-    private Integer type;
-    private Date createTime;
-    private Date updateTime;
+    private Long id;//用户id
+    private String nickname;//用户昵称
+    private String username;//账号
+    private String password;//密码
+    private String email;//邮箱
+    private String avatar;//头像图片
+    private String roles; //角色权限
+    private Date createTime;//创建时间
+    private Date updateTime;//更新时间
 
     private List<Blog> blogs = new ArrayList<>();
 }

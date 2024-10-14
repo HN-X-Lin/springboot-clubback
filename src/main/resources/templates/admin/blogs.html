@@ -53,12 +53,12 @@
           </div>
           <div class="field">
             <div class="ui checkbox">
-              <input type="checkbox" id="recommend" name="recommend">
+              <input type="checkbox" id="recommend" name="recommend" checked>
               <label for="recommend">推荐</label>
             </div>
           </div>
           <div class="field">
-            <button  type="button" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
+            <button  type="submit" id="search-btn" class="ui mini teal basic button"><i class="search icon"></i>搜索</button>
           </div>
         </div>
         </form>
@@ -77,13 +77,13 @@
           </tr>
           </thead>
           <tbody>
-          <tr th:each="blog, iterStat : ${pageInfo.list}">
-            <td th:text="${iterStat.count}">1</td>
+          <tr th:each="blog , iterStat : ${pageInfo.list}">
+            <td th:text="${iterStat.count}+( (${pageInfo.pageNum}-1) * 5)">1</td>
             <td th:text="${blog.title}">刻意练习清单</td>
             <td th:text="${blog.type.name}">认知升级</td>
             <td th:text="${blog.recommend} ? '是':'否'">是</td>
             <td th:text="${blog.published} ? '发布':'草稿'">发布</td>
-            <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-3-02</td>
+            <td th:text="${#dates.format(blog.updateTime,'yyyy-MM-dd')}">2020-6-20</td>
             <td>
               <a href="#" th:href="@{/admin/blogs/{id}/input(id=${blog.id})}" class="ui mini teal basic button">编辑</a>
               <a href="#" th:href="@{/admin/blogs/{id}/delete(id=${blog.id})}" class="ui mini red basic button">删除</a>

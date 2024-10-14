@@ -11,6 +11,6 @@ import com.lin.pojo.User;
  */
 public interface UserService {
 
-    public User checkUser(String username, String password);
+    public User queryUser(String username);
 
 }
